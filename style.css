@@ -1,7 +1,170 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
+/* === VIDEO NA POZADÍ === */
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -2; /* posunuto níž, aby overlay byl nad ním */
+}
+
+.video-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(80%);
+}
+
+/* === NOVÁ VRSTVA PŘES VIDEO (HLAVIČKA + HERO) === */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(
+    91deg,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.65) 25%,
+    rgba(95, 140, 148, 0.65) 63%
+  );
+  z-index: -1;
+  pointer-events: none; /* aby na ni šlo klikat skrz */
+}
+
+/* === HLAVIČKA === */
+.onboard-header {
+  position: relative;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  z-index: 10;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo-img {
+  height: 45px;
+  width: auto;
+  display: block;
+  background-color: transparent;
+  filter: brightness(100%) contrast(100%);
+}
+
+/* Navigace */
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Hover efekt ve stylu brand manuálu */
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #5F8C94;
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #5F8C94;
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+  width: 75%;
+}
+
+/* === HERO SEKCE === */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  margin-top: 50px;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #5F8C94;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #4a7379;
+}
+
+/* === RESPONSIVITA === */
+@media (max-width: 768px) {
+  .onboard-header {
+    padding: 15px 25px;
+  }
+
+  .main-nav ul {
+    gap: 25px;
+  }
+
+  .logo-img {
+    height: 32px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
 }

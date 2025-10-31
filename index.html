@@ -5,11 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ON BOARD – 5 let</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>ON BOARD – 5 let spolu</h1>
-  <p>První testovací stránka.</p>
+<div class="video-bg">
+  <video autoplay muted loop playsinline>
+    <source src="Assets/video/hero_bg.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- Nová vrstva pro gradient -->
+<div class="video-overlay"></div>
+
+
+  <header class="onboard-header">
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="Assets/img/logo_white-1.svg" alt="ON BOARD" class="logo-img">
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#sluzby" class="active">Služby</a></li>
+          <li><a href="#prace">Naše práce</a></li>
+          <li><a href="#tym">Tým</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>5 LET NA PALUBĚ</h1>
+      <p>Oslavte s námi 5 let kreativity, odvahy a týmového ducha.</p>
+      <a href="#" class="btn-primary">Zjistit víc</a>
+    </div>
+  </section>
 
   <script src="script.js"></script>
 </body>
-</html>
