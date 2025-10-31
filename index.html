@@ -8,16 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="video-bg">
-  <video autoplay muted loop playsinline>
-    <source src="Assets/video/hero_bg.mp4" type="video/mp4">
-  </video>
-</div>
 
-<!-- Nová vrstva pro gradient -->
-<div class="video-overlay"></div>
-
-
+<!-- Hlavička -->
   <header class="onboard-header">
     <div class="container">
       <a href="#" class="logo">
@@ -34,14 +26,95 @@
     </div>
   </header>
 
-  <section class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>5 LET NA PALUBĚ</h1>
-      <p>Oslavte s námi 5 let kreativity, odvahy a týmového ducha.</p>
-      <a href="#" class="btn-primary">Zjistit víc</a>
+<!-- Hero sekce -->
+<section class="hero">
+  <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="Assets/video/hero_bg.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay"></div>
+
+  <div class="hero-content">
+    <h1>5 LET NA PALUBĚ</h1>
+    <p>Oslavte s námi 5 let kreativity, odvahy a týmového ducha.</p>
+    <a href="#" class="btn-primary">Zjistit víc</a>
+  </div>
+</section>
+
+<!-- Sekce Milníky -->
+<section id="milniky" class="milniky-section">
+  <div class="container">
+    <h2 class="section-title">MILNÍKY</h2>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="timeline-line">
+        <div class="timeline-progress"></div>
+      </div>
+      <div class="timeline-items">
+        <button class="timeline-item active" data-index="0" data-year="2020">2020</button>
+        <button class="timeline-item" data-index="1" data-year="2021">2021</button>
+        <button class="timeline-item" data-index="2" data-year="2022">2022</button>
+        <button class="timeline-item" data-index="3" data-year="2023">2023</button>
+        <button class="timeline-item" data-index="4" data-year="2024">2024</button>
+        <button class="timeline-item" data-index="5" data-year="2025">2025</button>
+      </div>
     </div>
-  </section>
+
+    <!-- Carousel -->
+    <div class="timeline-carousel">
+      <div class="carousel-slide active">
+        <div class="slide-content">
+          <h3>2020 – PRVNÍ KROKY</h3>
+          <p>Začínáme budovat stabilní tým a získáváme první klienty. Vznikají první značky, které nás posouvají dál.</p>
+        </div>
+        <img src="Assets/img/milniky_2020.png" alt="První kroky" />
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-content">
+          <h3>2021 – EXPANZE TÝMU</h3>
+          <p>Tým se rozrůstá o nové tváře. Přichází specializace, nové procesy a větší kapacita zvládat komplexní projekty.</p>
+        </div>
+        <img src="Assets/img/milniky_2021.png" alt="Expanze týmu" />
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-content">
+          <h3>2022 – NOVÉ PROJEKTY</h3>
+          <p>Rozjíždíme vlastní iniciativy a produkty. Zkušenosti z klientských projektů převádíme do vlastních nápadů.</p>
+        </div>
+        <img src="Assets/img/milniky_2022.png" alt="Nové projekty" />
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-content">
+          <h3>2023 – REBRANDING A STRATEGIE</h3>
+          <p>ON BOARD se profiluje jako značka s jasným směrem a vizí. Posilujeme identitu i strategické vedení projektů.</p>
+        </div>
+        <img src="Assets/img/milniky_2023.png" alt="Rebranding a strategie" />
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-content">
+          <h3>2024 – KOMUNITY A SPOLUPRÁCE</h3>
+          <p>Budujeme síť partnerů a přátel, kteří sdílí naše hodnoty. Kreativita, spolupráce a dlouhodobé vztahy.</p>
+        </div>
+        <img src="Assets/img/milniky_2024.png" alt="Komunity a spolupráce" />
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-content">
+          <h3>2025 – NOVÉ SMĚRY</h3>
+          <p>Po pěti letech přichází nová éra. Zkoumáme nové technologie, rozšiřujeme služby a posouváme hranice.</p>
+        </div>
+        <img src="Assets/img/milniky_2025.png" alt="Nové směry" />
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <script src="script.js"></script>
 </body>
