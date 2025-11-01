@@ -3,43 +3,46 @@ console.log("Web ON BOARD je aktivní!");
 document.addEventListener("DOMContentLoaded", () => {
   console.log("ON BOARD – timeline init");
 
-  const timelineItems = document.querySelectorAll(".timeline-item");
+  const timelineItems = Array.from(document.querySelectorAll(".timeline-item"));
   const progressLine  = document.querySelector(".timeline-progress");
-  const slides        = document.querySelectorAll(".carousel-slide");
-
-  // Rychlá diagnostika
-  console.log({
-    items: timelineItems.length,
-    slides: slides.length,
-    hasProgress: !!progressLine
-  });
+  const slides        = Array.from(document.querySelectorAll(".carousel-slide"));
+  const dots          = Array.from(document.querySelectorAll(".carousel-dots .dot"));
 
   if (!timelineItems.length || !slides.length || !progressLine) {
     console.warn("Timeline: chybí prvky (.timeline-item / .carousel-slide / .timeline-progress).");
     return;
   }
-  if (timelineItems.length !== slides.length) {
-    console.warn("Timeline: počet tlačítek ≠ počet slidů. Seřaď 1:1.");
-  }
 
   let currentIndex = 0;
   let autoplayId;
 
+  // --- JEDNOTNÁ FUNKCE pro přepnutí všeho ---
   function updateTimeline(index) {
-  timelineItems.forEach((item, i) => {
-    item.classList.toggle("active", i === index);
-  });
-  slides.forEach((slide, i) => {
-    slide.classList.toggle("active", i === index);
-  });
+    currentIndex = index;
 
-  // Posun progressu (včetně začátku před prvním bodem)
-  const totalItems = timelineItems.length - 1;
-  const step = 100 / totalItems;
-  const progressWidth = index * step + 1.5; // +1.5% pro vizuální „vlevo od prvního“
-  progressLine.style.width = `${progressWidth}%`;
-}
+    // roky
+    timelineItems.forEach((item, i) => {
+      item.classList.toggle("active", i === index);
+    });
 
+    // slidy
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
+
+    // tečky
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
+    });
+
+    // progress čára
+    const totalItems = timelineItems.length - 1;
+    const step = 100 / totalItems;
+    const progressWidth = index * step + 1.5;
+    progressLine.style.width = `${progressWidth}%`;
+  }
+
+  // --- AUTOMATICKÉ PŘEPNUTÍ ---
   function startAutoplay() {
     stopAutoplay();
     autoplayId = setInterval(() => {
@@ -47,20 +50,28 @@ document.addEventListener("DOMContentLoaded", () => {
       updateTimeline(currentIndex);
     }, 6000);
   }
+
   function stopAutoplay() {
     if (autoplayId) clearInterval(autoplayId);
   }
 
+  // --- KLIK NA ROKY ---
   timelineItems.forEach((btn, i) => {
     btn.addEventListener("click", () => {
-      currentIndex = i;
-      updateTimeline(currentIndex);
-      startAutoplay(); // reset intervalu po kliku
+      updateTimeline(i);
+      startAutoplay(); // resetuje cyklus
     });
   });
 
-  // první vykreslení
+  // --- KLIK NA TEČKY ---
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      updateTimeline(i);
+      startAutoplay();
+    });
+  });
+
+  // --- INIT ---
   updateTimeline(currentIndex);
   startAutoplay();
 });
-

@@ -162,6 +162,7 @@ html, body {
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .btn-primary:hover {
@@ -469,6 +470,40 @@ html, body {
   max-width: 650px;
 }
 
+/* === DOT PAGER === */
+.carousel-dots {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 24px auto 0;   /* odsazení pod textem */
+}
+
+.carousel-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: none;
+  background: #999;      /* neaktivní */
+  opacity: 0.7;
+  cursor: pointer;
+  transition: transform .2s ease, opacity .2s ease, background-color .2s ease;
+}
+
+.carousel-dots .dot:hover { opacity: 1; transform: scale(1.15); }
+
+.carousel-dots .dot.active {
+  background: #5F8C94;   /* aktivní modrá */
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* mobil */
+@media (max-width: 768px) {
+  .carousel-dots { margin-top: 18px; }
+  .carousel-dots .dot { width: 9px; height: 9px; }
+}
+
 /* === ANIMACE === */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -697,11 +732,42 @@ html, body {
   max-width: 1150px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 56px; /* mezera mezi horní částí a obrázkem */
+  flex-direction: column;        /* ✅ jistota, že jsou pod sebou */
+  gap: 40px;
 }
 
-/* === Horní část === */
+/* === Horní karta (v pozadí) === */
+.about-card {
+  background-color: #dfe8ea;
+  border-radius: 20px;
+  padding: 60px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  position: relative;            /* ✅ aby šel nastavit z-index */
+  z-index: 1;                    /* ✅ karta pod fotkou */
+  width: 100%;                   /* ✅ stejná šířka jako fotka */
+}
+
+/* === Spodní karta: fotka v popředí a překryv === */
+.about-image-card {
+  position: relative;            /* ✅ umožní z-index */
+  z-index: 2;                    /* ✅ fotka nad kartou */
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  margin-top: -70px;             /* ✅ NEGATIVNÍ odsazení = překrytí karty */
+}
+
+.about-image-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+}
+
+/* === Vnitřek horní karty (zůstává stejné) === */
 .about-header {
   display: flex;
   flex-direction: column;
@@ -718,128 +784,35 @@ html, body {
   }
 }
 
-/* === Profil vlevo === */
-.about-profile {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+.about-profile { flex: 1; display:flex; flex-direction:column; align-items:center; text-align:center; }
 
 .profile-photo img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  width: 180px; height: 180px; border-radius: 50%;
   object-fit: cover;
   border: 3px solid #5F8C94;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
-.profile-name {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 22px;
-  margin-top: 10px;
-  color: #111;
-}
+.profile-name { font-family:'Montserrat',sans-serif; font-weight:700; font-size:22px; margin-top:10px; color:#111; }
+.profile-divider { width:60px; height:3px; background:#5F8C94; border-radius:2px; margin:10px 0; }
+.title { font-size:15px; color:#333; font-weight:600; }
 
-.profile-divider {
-  width: 60px;
-  height: 3px;
-  background-color: #5F8C94;
-  border-radius: 2px;
-  margin: 10px 0;
-}
+.about-text { flex:2; font-size:16px; color:#333; line-height:1.7; text-align:left; }
+.about-heading { font-family:'Montserrat',sans-serif; font-size:26px; font-weight:700; text-transform:uppercase; margin-bottom:20px; color:#000; position:relative; }
+.about-heading::after { content:""; display:block; width:80px; height:3px; background:#5F8C94; margin-top:10px; border-radius:2px; }
+.about-text p { margin-bottom:25px; max-width:600px; }
 
-.profile-text {
-  font-size: 15px;
-  color: #555;
-  line-height: 1.6;
-  max-width: 300px;
-}
-
-/* === Text vpravo === */
-.about-text {
-  flex: 2;
-  font-size: 16px;
-  color: #444;
-  line-height: 1.7;
-  text-align: left;
-}
-
-.about-heading {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 26px;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  color: #000;
-  position: relative;
-}
-
-.about-heading::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 3px;
-  background-color: #5F8C94;
-  margin-top: 10px;
-  border-radius: 2px;
-}
-
-.about-text p {
-  margin-bottom: 25px;
-  max-width: 600px;
-}
-
-.btn-link {
-  font-weight: 600;
-  color: #5F8C94;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.btn-link:hover {
-  border-color: #5F8C94;
-  color: #4a7379;
-}
-
-/* === Obrázek === */
-.about-image {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-}
-
-.about-image img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-}
+.btn-link { font-weight:600; color:#5F8C94; text-decoration:none; font-family:'Montserrat',sans-serif; border-bottom:2px solid transparent; transition:all .3s; }
+.btn-link:hover { border-color:#5F8C94; color:#4a7379; }
 
 /* === RESPONSIVITA === */
 @media (max-width: 768px) {
-  .about-header {
-    text-align: center;
-    align-items: center;
-  }
-
-  .about-text {
-    text-align: center;
-  }
-
-  .about-heading::after {
-    margin: 10px auto 0;
-  }
-
-  .about-text p {
-    max-width: none;
-  }
+  .about-card { padding: 40px 25px; }
+  .about-header { text-align:center; align-items:center; }
+  .about-text { text-align:center; }
+  .about-heading::after { margin: 10px auto 0; }
+  .about-text p { max-width: none; }
+  .about-image-card { margin-top: -40px; }  /* menší překryv na mobilu */
 }
 
 /* === KONTAKTNÍ FORMULÁŘ === */
