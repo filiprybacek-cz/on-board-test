@@ -1,3 +1,12 @@
+/* === GLOBÁLNÍ ROZLOŽENÍ === */
+.container {
+  width: 100%;
+  max-width: 1400px;   /* jednotná šířka obsahu */
+  margin: 0 auto;      /* vycentrování */
+  padding: 0 60px;     /* stejné vnitřní okraje jako header */
+  box-sizing: border-box;
+}
+
 /* Reset */
 html, body {
   margin: 0;
@@ -83,6 +92,7 @@ html, body {
   text-align: left;
 }
 
+
 .hero-inner.container {
   position: relative;
   z-index: 2;
@@ -124,17 +134,18 @@ html, body {
 .hero-right {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .hero-image {
   width: 90%;
-  max-width: 600px;
+  max-width: 420px;
   height: auto;
   filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.35));
   transform: translateY(10px);
   transition: transform 0.5s ease;
+  margin-top: 70px;
 }
 
 .hero-image:hover {
@@ -426,11 +437,10 @@ html, body {
 }
 
 .slide-icon {
-  width: 32px;
-  height: 32px;
-  stroke: #5F8C94;
+  width: 70px;
+  height: 70px;
+  margin-right: 15px;
   flex-shrink: 0;
-  transition: transform 0.3s ease, stroke 0.3s ease;
 }
 
 .carousel-slide.active .slide-icon {
